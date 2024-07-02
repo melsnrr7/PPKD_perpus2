@@ -16,7 +16,7 @@ class Kepsek
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::user()->id_level != '3') {
+        if (Auth::user()->usertype != 'kepsek') {
             return redirect('/');
         }
         return $next($request);

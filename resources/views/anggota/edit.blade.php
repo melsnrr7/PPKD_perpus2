@@ -3,29 +3,20 @@
 <div class="card">
     <div class="card-header">{{$title}}</div>
         <div class="card-body">
-            <form action="{{route('user.update', $edit->id)}}" method="POST">
+            <form action="{{route('anggota.update', $edit->id)}}" method="POST">
             @csrf
             @method("PUT")
                 <div class="form-group mb-3">
-                    <label for="">Level</label>
-                    <select name="usertype" class="form-control">
-                        <option value="">Pilih Level</option>
-                        @foreach ($levels as $level)
-                            <option {{($edit->usertype == $level->nama_level) ? 'selected' : ''}} value="{{$level->nama_level}}">{{$level->nama_level}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="form-group mb-3">
                     <label for="">Nama</label>
-                    <input value="{{$edit->name}}" type="text" name="name" placeholder="Masukkan Nama Anda" class="form-control">
+                    <input value="{{$edit->nama_anggota}}" type="text" name="nama_anggota" placeholder="Masukkan Nama Anda" class="form-control">
                 </div>
                 <div class="form-group mb-3">
                     <label for="">Email</label>
                     <input value="{{$edit->email}}" type="email" name="email" placeholder="Masukkan Email Anda" class="form-control">
                 </div>
                 <div class="form-group mb-3">
-                    <label for="">Password</label>
-                    <input type="password" name="password" placeholder="Masukkan Password Anda" class="form-control">
+                    <label for="">No Tlp</label>
+                    <input value="{{$edit->no_tlp}}" type="text" name="no_tlp" placeholder="Masukkan No Tlp Anda" class="form-control">
                 </div>
 
                 <div class="form-group mb-3">

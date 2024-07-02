@@ -6,6 +6,7 @@ use App\Models\Level;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -15,7 +16,12 @@ class UserController extends Controller
     public function index()
     {
         $datas = User::get();
-        return view('user.index', compact('datas'));
+        $title = "User";
+        // $datas = DB::table('users')
+        //     ->join('levels', 'users.id_level', '=', 'levels.id')
+        //     ->select('users.*', 'levels.nama_level')
+        //     ->get();
+        return view('user.index', compact('datas', 'title'));
     }
 
     /**
@@ -34,7 +40,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         User::create([
-            'id_level' => $request->id_level,
+            'usertype' => $request->usertype,
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
@@ -74,7 +80,7 @@ class UserController extends Controller
             $password = $edit->password;
         }
         User::where('id', $id)->update([
-            'id_level' => $request->id_level,
+            'usertype' => $request->usertype,
             'name' => $request->name,
             'email' => $request->email,
             'password' => $password,
@@ -88,6 +94,7 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        User::where('id', $id)->delete();
+        return redirect()->to('user')->with('message', 'Data berhasil dihapus');
     }
 }

@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'id_level',
+        'usertype',
         'name',
         'email',
         'password',
@@ -46,9 +46,13 @@ class User extends Authenticatable
         ];
     }
 
+    // public function getAuthPassword()
+    // {
+    //     return $this->password;
+    // }
+
     public function level()
     {
-        return $this->belongsTo(Level::class, 'id_level', 'id');
+        return $this->belongsTo(Level::class, 'usertype', 'nama_level');
     }
-    
 }

@@ -16,7 +16,7 @@ class Operator
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::user()->id_level != '2') {
+        if (Auth::user()->usertype != 'operator') {
             return redirect('/');
         }
         return $next($request);

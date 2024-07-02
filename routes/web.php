@@ -6,23 +6,28 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LevelController;
+use App\Http\Controllers\AnggotaController;
+use App\Http\Controllers\BooksController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+
 
 Route::get('/', function () {
     return view('auth/login');
 });
+// Route::get('/', [AuthenticatedSessionController::class, 'create']);
+// Route::post('/login', [AuthenticatedSessionController::class, 'store']);
 
-Route::get('/dashboard', function () {
+Route::get('index', function () {
     if (Auth::user()->usertype == 'admin') {
-        return view('admin/dashboard');
+        return view('admin/index');
     }
     if (Auth::user()->usertype == 'operator') {
-        return view('operator/dashboard');
+        return view('operator/index');
     }
     if (Auth::user()->usertype == 'kepsek') {
-        return view('kepsek/dashboard');
+        return view('kepsek/index');
     }
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified'])->name('index');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -32,9 +37,11 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__ . '/auth.php';
 
-Route::get('admin/dashboard', [HomeController::class, 'index1'])->middleware(['auth', 'admin']);;
-Route::get('operator/dashboard', [HomeController::class, 'index2'])->middleware(['auth', 'operator']);;
-Route::get('kepsek/dashboard', [HomeController::class, 'index3'])->middleware(['auth', 'kepsek']);;
+Route::get('admin/index', [HomeController::class, 'index1'])->middleware(['auth', 'admin']);;
+Route::get('operator/index', [HomeController::class, 'index2'])->middleware(['auth', 'operator']);;
+Route::get('kepsek/index', [HomeController::class, 'index3'])->middleware(['auth', 'kepsek']);;
 
 Route::resource('user', UserController::class);
 Route::resource('level', LevelController::class);
+Route::resource('anggota', AnggotaController::class);
+Route::resource('books', BooksController::class);

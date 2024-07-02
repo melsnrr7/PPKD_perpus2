@@ -1,7 +1,7 @@
 @extends('layouts.app1')
 @section('content1')
 <div class="card">
-    <div class="card-header"></div>
+    <div class="card-header">{{$title}}</div>
         <div class="card-body">
             <div class="table-responsive">
                 <div align="right" class="mb-3">

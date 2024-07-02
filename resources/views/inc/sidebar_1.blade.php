@@ -39,6 +39,8 @@
                 <h6 class="collapse-header">Master Data:</h6>
                 <a class="collapse-item" href="{{ route('user.index') }}">User</a>
                 <a class="collapse-item" href="{{ route('level.index') }}">Level</a>
+                <a class="collapse-item" href="{{ route('anggota.index') }}">Anggota</a>
+                <a class="collapse-item" href="{{ route('books.index') }}">Buku</a>
             </div>
         </div>
     </li>

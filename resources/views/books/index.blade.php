@@ -5,15 +5,18 @@
         <div class="card-body">
             <div class="table-responsive">
                 <div align="right" class="mb-3">
-                <a href="{{route('user.create')}}" class="btn btn-primary">Tambah Data</a>
+                <a href="{{route('books.create')}}" class="btn btn-primary">Tambah Data</a>
             </div>
             <table class="table table-border">
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Level</th>
-                        <th>Nama</th>
-                        <th>Email</th>
+                        <th>Nama Buku</th>
+                        <th>Penerbit</th>
+                        <th>Qty</th>
+                        <th>Deskripsi</th>
+                        <th>Penulis</th>
+                        <th>Genre</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -23,13 +26,16 @@
 
                     <tr>
                         <td>{{$no++}}</td>
-                        <td>{{$data->usertype}}</td>
-                        <td>{{$data->name}}</td>
-                        <td>{{$data->email}}</td>
+                        <td>{{$data->nama_buku}}</td>
+                        <td>{{$data->penerbit}}</td>
+                        <td>{{$data->qty}}</td>
+                        <td>{{$data->deskripsi}}</td>
+                        <td>{{$data->penulis}}</td>
+                        <td>{{$data->genre}}</td>
                         <td>
-                            <a href="{{route('user.edit', $data->id)}}" class="btn btn-success btn-sm">Edit</a>
+                            <a href="{{route('books.edit', $data->id)}}" class="btn btn-success btn-sm">Edit</a>
 
-                            <form method="POST" action="{{route('user.destroy', $data->id)}}" class="d-inline">
+                            <form method="POST" action="{{route('books.destroy', $data->id)}}" class="d-inline">
                             @csrf
                             <input type="hidden" name="_method" value="DELETE">
                             <button class="btn btn-danger btn-sm" type="submit">Hapus</button>

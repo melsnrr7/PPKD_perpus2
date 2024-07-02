@@ -13,7 +13,8 @@ class LevelController extends Controller
     public function index()
     {
         $datas = Level::get();
-        return view('level.index', compact('datas'));
+        $title = "Level";
+        return view('level.index', compact('datas', 'title'));
     }
 
     /**

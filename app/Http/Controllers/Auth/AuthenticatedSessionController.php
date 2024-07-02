@@ -28,17 +28,17 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        if ($request->user()->id_level === 1) {
-            return redirect('admin/dashboard');
+        if ($request->user()->usertype === 'admin') {
+            return redirect('admin/index');
         }
-        if ($request->user()->id_level === 2) {
-            return redirect('operator/dashboard');
+        if ($request->user()->usertype === 'operator') {
+            return redirect('operator/index');
         }
-        if ($request->user()->id_level === 3) {
-            return redirect('kepsek/dashboard');
+        if ($request->user()->usertype === 'kepsek') {
+            return redirect('kepsek/index');
         }
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        return redirect()->intended(route('index'));
     }
 
     /**
@@ -52,6 +52,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/');  
     }
 }
