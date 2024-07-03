@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\BooksController;
+use App\Http\Controllers\PeminjamsController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 
@@ -45,3 +46,4 @@ Route::resource('user', UserController::class);
 Route::resource('level', LevelController::class);
 Route::resource('anggota', AnggotaController::class);
 Route::resource('books', BooksController::class);
+Route::resource('peminjam', PeminjamsController::class);

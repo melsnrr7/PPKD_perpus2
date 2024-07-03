@@ -11,6 +11,7 @@ class TransaksiController extends Controller
      */
     public function peminjaman()
     {
+        
     }
 
     public function pengembalian()
