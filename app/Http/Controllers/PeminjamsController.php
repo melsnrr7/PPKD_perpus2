@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Anggota;
 use App\Models\Books;
+use App\Models\Detail_peminjam;
 use App\Models\Peminjams;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,7 @@ class PeminjamsController extends Controller
      */
     public function create()
     {
-         $datas = Peminjams::get();
+        $datas = Peminjams::get();
         $books = Books::get();
         $title = "Tambah Peminjam";
         $anggotas = Anggota::orderBy('id', 'desc')->get();
@@ -35,7 +36,7 @@ class PeminjamsController extends Controller
 
         $no_transaksi = $huruf . date("dmY") . sprintf("%03s", $urutan);
 
-        return view('peminjam.create', compact('datas', 'books', 'title', 'anggotas', 'no_transaksi' ));
+        return view('peminjam.create', compact('datas', 'books', 'title', 'anggotas', 'no_transaksi'));
     }
 
     /**
@@ -43,11 +44,20 @@ class PeminjamsController extends Controller
      */
     public function store(Request $request)
     {
-        Peminjams::create([
+        $peminjam = Peminjams::create([
             'no_transaksi' => $request->no_transaksi,
             'id_anggota' => $request->id_anggota,
         ]);
 
+        foreach ($request->id_buku as $key => $id_buku) {
+            Detail_peminjam::create([
+                'id_peminjam' => $peminjam->id,
+                'id_buku' => $id_buku,
+                'tanggal_pinjam' => $request->tanggal_pinjam[$key],
+                'tanggal_pengembalian' => $request->tanggal_pengembalian[$key],
+                'keterangan' => $request->keterangan[$key],
+            ]);
+        }
         return redirect()->to('peminjam')->with('message', 'Data berhasil ditambah');
     }
 

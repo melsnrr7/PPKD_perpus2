@@ -4,7 +4,8 @@
 <div class="card">
     <div class="card-header">{{$title}}</div>
     <div class="card-body">
-        <form action="" method="POST">
+        <form action="{{route('peminjam.store')}}" method="POST">
+            @csrf
             <div class="mb-3 row">
                 <div class="col-sm-3">
                     <label for="id_anggota" class="form-label">Nama Anggota</label>
@@ -27,12 +28,11 @@
 
             <br>
             <br>
-            <table class="transaction table table-border">
+            <table class="transaction table table-bordered">
                 <div align="right" class="mb-3">
-                    <a href="" class="btn btn-primary btn-add">Add</a>
+                    <button type="button" class="btn btn-primary btn-add">Add</button>
                 </div>
                 <thead>
-                    <th>No</th>
                     <th>Nama Buku</th>
                     <th>Tanggal Pinjam</th>
                     <th>Tanggal Pengembalian</th>
@@ -42,30 +42,15 @@
                 <tbody>
                     @php $no=1; @endphp
                     @foreach ($datas as $data )
-
-                    <tr>
-                        <td>{{$no++}}</td>
-                        <td>
-                            <select name="id_buku" id="id_buku" class="form-control">
-                                @foreach ($books as $buku)
-                                    <option value="{{$buku->id}}">{{$buku->nama_buku}}</option>
-                                @endforeach
-                            </select>
-                        </td>
-                        <td>
-                            <input type="date" name="tanggal_pinjam" class="form-control">
-                        </td>
-                        <td>
-                            <input type="date" name="tanggal_pengembalian" class="form-control">
-                        </td>
-                        <td>
-                            <input type="text" name="keterangan" class="form-control">
-                        </td>
-                    </tr>
-
+                        <tr>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>
+            <div class="form-group mb-3">
+                <input type="submit" class="btn btn-primary" value="simpan">
+                <a href="{{url()->previous()}}" class="btn btn-danger">Kembali</a>
+            </div>
         </form>
     </div>
 </div>

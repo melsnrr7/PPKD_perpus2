@@ -62,11 +62,12 @@
     </a>
 
     @include('inc.js')
-    <script>
+    {{-- <script>
         $('.btn-add').click(function(){
             alert('duarrr');
         });
-    </script>
+    </script> --}}
+
 </body>
 
 </html>

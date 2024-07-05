@@ -13,7 +13,7 @@ class Peminjams extends Model
 
     public function anggota()
     {
-        return $this->belongsTo(Anggota::class, 'id_anggota', 'nama_anggota');
+        return $this->belongsTo(Anggota::class, 'id_anggota', 'id');
     }
 
     public function books()

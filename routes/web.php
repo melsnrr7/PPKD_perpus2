@@ -9,6 +9,7 @@ use App\Http\Controllers\LevelController;
 use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\BooksController;
 use App\Http\Controllers\PeminjamsController;
+use App\Http\Controllers\Detail_peminjamController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 
@@ -47,3 +48,6 @@ Route::resource('level', LevelController::class);
 Route::resource('anggota', AnggotaController::class);
 Route::resource('books', BooksController::class);
 Route::resource('peminjam', PeminjamsController::class);
+// Route::resource('detail_peminjam', Detail_peminjamController::class);
+Route::get('/detail-peminjam/{id}', [Detail_peminjamController::class, 'show'])->name('detail_peminjam.show');
+Route::get('/cetak_peminjam', [Detail_peminjamController::class, 'cetak_peminjam'])->name('cetak_peminjam');
